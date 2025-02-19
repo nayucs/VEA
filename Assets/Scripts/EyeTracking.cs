@@ -46,6 +46,9 @@ public class EyeTracking : MonoBehaviour
                 //Hitした位置にマーカーを移動
                 GazePoint.transform.position = hit.point;
 
+                // シェーダーに視線ヒット位置を渡す
+                Shader.SetGlobalVector("_GazeHitPosition", hit.point);
+
             }
         }
     }
