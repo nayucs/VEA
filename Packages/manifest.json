@@ -2,8 +2,11 @@
   "dependencies": {
     "com.meta.xr.sdk.core": "71.0.0",
     "com.meta.xr.sdk.interaction.ovr": "72.0.0",
+    "com.unity.burst": "1.8.15",
     "com.unity.collab-proxy": "2.6.0",
+    "com.unity.collections": "1.2.4",
     "com.unity.feature.development": "1.0.1",
+    "com.unity.mathematics": "1.2.6",
     "com.unity.recorder": "4.0.3",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.7.6",
