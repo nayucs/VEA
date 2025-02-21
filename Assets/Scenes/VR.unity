@@ -1161,7 +1161,6 @@ GameObject:
   - component: {fileID: 1356837847}
   - component: {fileID: 1356837849}
   - component: {fileID: 1356837848}
-  - component: {fileID: 1356837850}
   m_Layer: 5
   m_Name: RawImage
   m_TagString: Untagged
@@ -1200,7 +1199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 3c8cdb73514159c4487c1d086edbc5c5, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1223,22 +1222,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356837846}
   m_CullTransparentMesh: 1
---- !u!114 &1356837850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356837846}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80dfe7e959991ae4eac1bddb25f52884, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sourceCamera: {fileID: 1375724456}
-  sourceTexture: {fileID: 8400000, guid: 5951cef56b4858c44a7ee12c3128f0cb, type: 2}
-  blurMaterial: {fileID: 2100000, guid: a9772e0f824afc848aa6065085294968, type: 2}
-  targetUI: {fileID: 1356837848}
 --- !u!1 &1375724454
 GameObject:
   m_ObjectHideFlags: 0
