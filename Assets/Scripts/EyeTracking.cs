@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EyeTracking : MonoBehaviour
 {
@@ -40,16 +41,43 @@ public class EyeTracking : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 1000f))
             {
-                // LogにHitしたオブジェクト名を出力
-                Debug.Log("HitObject : " + hit.collider.gameObject.name);
-
-                //Hitした位置にマーカーを移動
+                //hitした位置にマーカーを移動
                 GazePoint.transform.position = hit.point;
 
-                // シェーダーに視線ヒット位置を渡す
-                Shader.SetGlobalVector("_GazeHitPosition", hit.point);
+                //UIへのhit判定
+                RawImage rawImage = hit.collider.GetComponent<RawImage>();
+                RectTransform rectTransform = hit.collider.GetComponent<RectTransform>();
 
+                if (rawImage != null && rectTransform != null)
+                {
+                    Vector2 localPoint;
+                    if (RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform,HMDCamera.WorldToScreenPoint(hit.point),HMDCamera,out localPoint))
+                    {
+                        //取得されたローカル座標をuv座標に変換(正規化)
+                        Vector2 uv = LocalToUV(rectTransform, localPoint);
+
+                        Debug.Log($"Hit UV座標: {uv}");
+
+                        // シェーダーにUV座標を渡す
+                        Material mat = rawImage.material;
+                        if (mat != null)
+                        {
+                            mat.SetVector("_GazeUV", new Vector4(uv.x, uv.y, 0, 0));
+                        }
+                    }
+                }
             }
         }
+    }
+
+    Vector2 LocalToUV(RectTransform rectTransform, Vector2 localPoint)
+    {
+        Vector2 pivot = rectTransform.pivot;
+        Vector2 size = rectTransform.rect.size;
+
+        float u = (localPoint.x / size.x) + pivot.x;
+        float v = (localPoint.y / size.y) + pivot.y;
+
+        return new Vector2(u, v);
     }
 }

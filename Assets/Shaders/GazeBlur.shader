@@ -4,7 +4,8 @@ Shader "Custom/GazeBlur"
     {
         _MainTex("Texture", 2D) = "white" {}
         _BlurSize("Blur Size", Float) = 10.0
-        _GazePos ("GazePosition")
+        _GazeUV("Gaze UV", Vector) = (0.5, 0.5, 0, 0) // 視線UV座標
+        _ClearRadius("Clear Radius", Float) = 0.1 // 視線周辺の透明領域
     }
     SubShader
     {
@@ -31,6 +32,8 @@ Shader "Custom/GazeBlur"
             sampler2D _MainTex;
             float4 _MainTex_TexelSize;
             float _BlurSize;
+            float2 _GazeUV;
+            float _ClearRadius; // 視線周辺をクリアする半径
 
             v2f vert(appdata_t v)
             {
@@ -42,11 +45,21 @@ Shader "Custom/GazeBlur"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                float blur = max(1, _BlurSize); // 最低限のブラーサイズ
+                // 視線位置との距離を計算
+                float dist = distance(i.uv, _GazeUV);
+
+                // 視線周辺（一定範囲内）は透明にする
+                if (dist < _ClearRadius)
+                {
+                    discard; // ピクセルを破棄（透明にする）
+                }
+
+                // 通常の水平ブラー処理（範囲外のみ実施）
+                float blur = max(1, _BlurSize);
                 float weight_total = 0.0;
                 fixed4 col = fixed4(0, 0, 0, 0);
 
-                // 水平方向のブラー
+                // 水平方向ガウシアンブラー
                 [loop]
                 for (float x = -blur; x <= blur; x += 0.5)
                 {
