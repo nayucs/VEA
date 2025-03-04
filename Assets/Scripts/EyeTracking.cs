@@ -62,7 +62,8 @@ public class EyeTracking : MonoBehaviour
                         Material mat = rawImage.material;
                         if (mat != null)
                         {
-                            mat.SetVector("_GazeUV", new Vector4(uv.x, uv.y, 0, 0));
+                            mat.SetVector("_GazeUV_L", new Vector4(uv.x, uv.y, 0, 0));
+                            mat.SetVector("_GazeUV_R", new Vector4(uv.x, uv.y, 0, 0));
                         }
                     }
                 }
