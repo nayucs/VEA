@@ -57,7 +57,7 @@ public class EyeTracking : MonoBehaviour
                         out localPoint))
                     {
                         Vector2 uv = LocalToUV(rectTransform, localPoint);
-                        Debug.Log($"Hit UVç¿ïW: {uv}");
+                        //Debug.Log($"Hit UVç¿ïW: {uv}");
 
                         Material mat = rawImage.material;
                         if (mat != null)

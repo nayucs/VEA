@@ -3,9 +3,10 @@ Shader "Custom/GazeBlur"
     Properties
     {
         _MainTex("Texture", 2D) = "white" {}
-        _BlurSize("Blur Size", Float) = 10.0
+        _BlurSize("Blur Size", Float) = 50.0
         _GazeUV("Gaze UV", Vector) = (0.5, 0.5, 0, 0) // 視線UV座標
         _ClearRadius("Clear Radius", Float) = 0.1 // 視線周辺の透明領域
+        _AspectRatio("Aspect Ratio (width/height)", Float) = 1.77778 // アスペクト比
     }
     SubShader
     {
@@ -15,7 +16,7 @@ Shader "Custom/GazeBlur"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile_instancing // ステレオレンダリング対応
+            #pragma multi_compile_instancing
             #include "UnityCG.cginc"
 
             struct appdata_t
@@ -36,7 +37,8 @@ Shader "Custom/GazeBlur"
             float4 _MainTex_TexelSize;
             float _BlurSize;
             float2 _GazeUV;
-            float _ClearRadius; // 視線周辺をクリアする半径
+            float _ClearRadius;
+            float _AspectRatio;  // 横/縦アスペクト比
 
             v2f vert(appdata_t v)
             {
@@ -50,26 +52,24 @@ Shader "Custom/GazeBlur"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                // 視線位置との距離を計算
-                float dist = distance(i.uv, _GazeUV);
+                // アスペクト比補正を考慮した距離計算
+                float2 aspectCorrectedUV = float2((i.uv.x - _GazeUV.x) * _AspectRatio, i.uv.y - _GazeUV.y);
+                float dist = length(aspectCorrectedUV);
 
                 // 視線周辺（一定範囲内）は透明にする
                 if (dist < _ClearRadius)
                 {
-                    discard; // ピクセルを破棄（透明にする）
+                    discard;
                 }
 
-                // 通常の水平ブラー処理（範囲外のみ実施）
                 float blur = max(1, _BlurSize);
                 float weight_total = 0.0;
                 fixed4 col = fixed4(0, 0, 0, 0);
 
-                // 水平方向ガウシアンブラー
                 [loop]
                 for (float x = -blur; x <= blur; x += 0.5)
                 {
-                    float distance_normalized = abs(x / blur);
-                    float weight = exp(-0.5 * pow(distance_normalized, 2) * 2.0);
+                    float weight = exp(-0.5 * pow(abs(x / blur), 2) * 2.0);
                     weight_total += weight;
                     col += tex2D(_MainTex, i.uv + float2(x * _MainTex_TexelSize.x, 0)) * weight;
                 }
