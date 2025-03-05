@@ -39,31 +39,30 @@ public class EyeTracking : MonoBehaviour
             //RayがHitしたオブジェクトの情報を格納用
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 1000f))
+            if (Physics.Raycast(ray, out hit, 1000f, LayerMask.GetMask("UI")))
             {
-                //hitした位置にマーカーを移動
                 GazePoint.transform.position = hit.point;
 
-                //UIへのhit判定
+                // UIのRawImageかチェック
                 RawImage rawImage = hit.collider.GetComponent<RawImage>();
                 RectTransform rectTransform = hit.collider.GetComponent<RectTransform>();
 
                 if (rawImage != null && rectTransform != null)
                 {
                     Vector2 localPoint;
-                    if (RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform,HMDCamera.WorldToScreenPoint(hit.point),HMDCamera,out localPoint))
+                    if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        rectTransform,
+                        HMDCamera.WorldToScreenPoint(hit.point),
+                        HMDCamera,
+                        out localPoint))
                     {
-                        //取得されたローカル座標をuv座標に変換(正規化)
                         Vector2 uv = LocalToUV(rectTransform, localPoint);
-
                         Debug.Log($"Hit UV座標: {uv}");
 
-                        // シェーダーにUV座標を渡す
                         Material mat = rawImage.material;
                         if (mat != null)
                         {
-                            mat.SetVector("_GazeUV_L", new Vector4(uv.x, uv.y, 0, 0));
-                            mat.SetVector("_GazeUV_R", new Vector4(uv.x, uv.y, 0, 0));
+                            mat.SetVector("_GazeUV", new Vector4(uv.x, uv.y, 0, 0));
                         }
                     }
                 }

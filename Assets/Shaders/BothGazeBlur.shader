@@ -7,7 +7,7 @@ Shader "Custom/BothGazeBlur"
         _GazeUV_L("Gaze UV Left", Vector) = (0.5, 0.5, 0, 0)
         _GazeUV_R("Gaze UV Right", Vector) = (0.5, 0.5, 0, 0)
         _ClearRadius("Clear Radius", Float) = 0.1
-        _CurrentEye("Current Eye (0=Left, 1=Right)", Float) = 0
+        _CurrentEye("Current Eye (0=Left, 1=Right)", Float) = 1
     }
     SubShader
     {
