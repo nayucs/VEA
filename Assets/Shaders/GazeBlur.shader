@@ -56,10 +56,10 @@ Shader "Custom/GazeBlur"
                 float2 aspectCorrectedUV = float2((i.uv.x - _GazeUV.x) * _AspectRatio, i.uv.y - _GazeUV.y);
                 float dist = length(aspectCorrectedUV);
 
-                // 視線周辺（一定範囲内）は透明にする
+                // 視線周辺（一定範囲内）はそのまま
                 if (dist < _ClearRadius)
                 {
-                    discard;
+                    return tex2D(_MainTex, i.uv);
                 }
 
                 float blur = max(1, _BlurSize);
