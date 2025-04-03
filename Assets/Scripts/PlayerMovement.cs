@@ -48,7 +48,17 @@ public class PlayerMovement : MonoBehaviour
             dir += transform.forward;
         }
 
+        if (OVRInput.GetDown(OVRInput.RawButton.RThumbstickUp))
+        {
+            dir += transform.forward;
+        }
+
         if (Input.GetKey(KeyCode.S))
+        {
+            dir -= transform.forward;
+        }
+
+        if (OVRInput.GetDown(OVRInput.RawButton.RThumbstickDown))
         {
             dir -= transform.forward;
         }
