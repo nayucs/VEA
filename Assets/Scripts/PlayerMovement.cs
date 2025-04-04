@@ -3,8 +3,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float maxSpeed = 10f;
-    public float accelerationTime = 5f; // 何秒かけてmaxSpeedに到達するか
+    public float accelerationTime = 5f;
     public float inputThreshold = 0.1f;
+    public float rotationSpeed = 90f; // 1秒あたり何度回転するか
 
     private Rigidbody rb;
     private float currentSpeed = 0f;
@@ -17,6 +18,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        HandleMovement();
+        HandleRotation();
+    }
+
+    void HandleMovement()
+    {
         Vector3 inputDir = GetInputDirection();
 
         if (inputDir != Vector3.zero)
@@ -25,16 +32,25 @@ public class PlayerMovement : MonoBehaviour
             float speedFactor = Mathf.Clamp01(elapsedTime / accelerationTime);
             currentSpeed = Mathf.Lerp(0f, maxSpeed, speedFactor);
 
-            // 移動方向に速度を与える
             Vector3 move = inputDir * currentSpeed;
             rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
         }
         else
         {
-            // 入力が止まったら速度もリセット（オプション）
             elapsedTime = 0f;
             currentSpeed = 0f;
             rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        }
+    }
+
+    void HandleRotation()
+    {
+        float rightStickX = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.RTouch).x;
+
+        if (Mathf.Abs(rightStickX) > inputThreshold)
+        {
+            float rotationAmount = rightStickX * rotationSpeed * Time.deltaTime;
+            transform.Rotate(0f, rotationAmount, 0f);
         }
     }
 
@@ -42,25 +58,23 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 dir = Vector3.zero;
 
-        // キーボード入力
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) || OVRInput.Get(OVRInput.Button.PrimaryThumbstickUp, OVRInput.Controller.LTouch))
         {
             dir += transform.forward;
         }
 
-        if (OVRInput.GetDown(OVRInput.RawButton.RThumbstickUp))
-        {
-            dir += transform.forward;
-        }
-
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) || OVRInput.Get(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.LTouch))
         {
             dir -= transform.forward;
         }
 
-        if (OVRInput.GetDown(OVRInput.RawButton.RThumbstickDown))
+        if (Input.GetKey(KeyCode.A) || OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft, OVRInput.Controller.LTouch))
         {
-            dir -= transform.forward;
+            dir -= transform.right;
+        }
+        if (Input.GetKey(KeyCode.D) || OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight, OVRInput.Controller.LTouch))
+        {
+            dir += transform.right;
         }
 
         return dir.normalized;
