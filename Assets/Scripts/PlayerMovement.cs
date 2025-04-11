@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float maxSpeed = 10f;
-    public float accelerationTime = 5f;
-    public float inputThreshold = 0.1f;
-    public float rotationSpeed = 90f; // 1ïbÇ†ÇΩÇËâΩìxâÒì]Ç∑ÇÈÇ©
+    public float maxSpeed = 7.08f;          // 25.5km/h Ç m/s Ç…ä∑éZ
+    public float acceleration = 10f;        // â¡ë¨óÕ
+    public float deceleration = 15f;        // å∏ë¨óÕ
+    public float rotationSpeed = 90f;       // 1ïbÇ†ÇΩÇËÇÃâÒì]äpìx
+    public float inputThreshold = 0.1f;     // ÉXÉeÉBÉbÉNÇÃñ≥å¯É]Å[Éì
 
     private Rigidbody rb;
-    private float currentSpeed = 0f;
-    private float elapsedTime = 0f;
+    private Vector3 currentVelocity = Vector3.zero;
 
     void Start()
     {
@@ -25,22 +25,21 @@ public class PlayerMovement : MonoBehaviour
     void HandleMovement()
     {
         Vector3 inputDir = GetInputDirection();
+        Vector3 targetVelocity = inputDir * maxSpeed;
 
-        if (inputDir != Vector3.zero)
+        if (inputDir.magnitude > 0)
         {
-            elapsedTime += Time.deltaTime;
-            float speedFactor = Mathf.Clamp01(elapsedTime / accelerationTime);
-            currentSpeed = Mathf.Lerp(0f, maxSpeed, speedFactor);
-
-            Vector3 move = inputDir * currentSpeed;
-            rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
+            // â¡ë¨
+            currentVelocity = Vector3.MoveTowards(currentVelocity, targetVelocity, acceleration * Time.deltaTime);
         }
         else
         {
-            elapsedTime = 0f;
-            currentSpeed = 0f;
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            // å∏ë¨
+            currentVelocity = Vector3.MoveTowards(currentVelocity, Vector3.zero, deceleration * Time.deltaTime);
         }
+
+        // yê¨ï™ÇÕà€éùÅiÉWÉÉÉìÉvÇ‚èdóÕÇ»ÇµÇ»ÇÃÇ≈yÇÕïœâªÇµÇ»Ç¢Ç™îOÇÃÇΩÇﬂÅj
+        rb.velocity = new Vector3(currentVelocity.x, rb.velocity.y, currentVelocity.z);
     }
 
     void HandleRotation()
@@ -59,23 +58,13 @@ public class PlayerMovement : MonoBehaviour
         Vector3 dir = Vector3.zero;
 
         if (Input.GetKey(KeyCode.W) || OVRInput.Get(OVRInput.Button.PrimaryThumbstickUp, OVRInput.Controller.LTouch))
-        {
             dir += transform.forward;
-        }
-
         if (Input.GetKey(KeyCode.S) || OVRInput.Get(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.LTouch))
-        {
             dir -= transform.forward;
-        }
-
         if (Input.GetKey(KeyCode.A) || OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft, OVRInput.Controller.LTouch))
-        {
             dir -= transform.right;
-        }
         if (Input.GetKey(KeyCode.D) || OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight, OVRInput.Controller.LTouch))
-        {
             dir += transform.right;
-        }
 
         return dir.normalized;
     }
