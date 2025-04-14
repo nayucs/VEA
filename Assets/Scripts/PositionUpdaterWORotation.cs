@@ -5,24 +5,20 @@ using UnityEngine;
 public class PositionUpdaterWORotation : MonoBehaviour
 {
     [Header("CSVファイル（TextAsset）")]
-    public TextAsset csvFile;  // Inspector上でセット
+    public TextAsset csvFile;
 
     private List<Vector3> positions = new List<Vector3>();
     private int currentFrame = 0;
+    private bool isPlaying = false;
 
     void Start()
     {
         if (csvFile != null)
         {
             LoadPositionsFromCSV(csvFile.text);
-
             if (positions.Count > 0)
             {
-                // 最初のフレームの位置を適用（回転は考慮しない）
                 transform.position = positions[0];
-
-                // 10秒待機後に2フレーム目以降を再生
-                StartCoroutine(DelayedStart());
             }
         }
         else
@@ -34,12 +30,11 @@ public class PositionUpdaterWORotation : MonoBehaviour
     void LoadPositionsFromCSV(string csvText)
     {
         string[] lines = csvText.Split('\n');
-        for (int i = 1; i < lines.Length; i++)  // 1行目はヘッダーなのでスキップ
+        for (int i = 1; i < lines.Length; i++)
         {
             if (string.IsNullOrWhiteSpace(lines[i])) continue;
-
             string[] values = lines[i].Split(',');
-            if (values.Length < 4) continue;  // frame, x, y, z まで
+            if (values.Length < 4) continue;
 
             float x = float.Parse(values[1]);
             float y = float.Parse(values[2]);
@@ -49,13 +44,14 @@ public class PositionUpdaterWORotation : MonoBehaviour
         }
     }
 
-    IEnumerator DelayedStart()
+    public void StartPlayback()
     {
-        yield return new WaitForSeconds(10f);  // 10秒待機
-
-        // 2フレーム目から再生開始
-        currentFrame = 1;
-        StartCoroutine(UpdatePosition());
+        if (!isPlaying && positions.Count > 1)
+        {
+            isPlaying = true;
+            currentFrame = 1;
+            StartCoroutine(UpdatePosition());
+        }
     }
 
     IEnumerator UpdatePosition()
@@ -64,7 +60,7 @@ public class PositionUpdaterWORotation : MonoBehaviour
         {
             transform.position = positions[currentFrame];
             currentFrame++;
-            yield return new WaitForSeconds(0.033f);  // 30fps（適宜変更）
+            yield return new WaitForSeconds(0.033f); // 30fps
         }
     }
 }
