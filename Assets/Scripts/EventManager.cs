@@ -4,35 +4,61 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     private PositionUpdaterWORotation[] positionUpdaters;
-    public AudioClip StartSE;
-    AudioSource audioSource;
+    public AudioSource audioSource;
+
+    private HeadRotationRecorder recorder;
 
     void Start()
     {
+        StartCoroutine(DelayedInit());
+    }
+
+    IEnumerator DelayedInit()
+    {
+        yield return null; // 他オブジェクトのStart実行を待つ
+
         positionUpdaters = FindObjectsOfType<PositionUpdaterWORotation>();
-        audioSource = GetComponent<AudioSource>();
+        recorder = FindObjectOfType<HeadRotationRecorder>();
+
+        if (recorder == null)
+        {
+            Debug.LogWarning("HeadRotationRecorder が見つかりません。回転の記録は行われません。");
+        }
+
+        if (positionUpdaters.Length > 0)
+        {
+            positionUpdaters[0].OnPlaybackFinished += OnAllFinished;
+        }
+
         StartCoroutine(DelayedPlayback());
     }
 
     IEnumerator DelayedPlayback()
     {
-        yield return new WaitForSeconds(7f); // 7秒待機
+        yield return new WaitForSeconds(10f);
 
-        // 音を鳴らす
         if (audioSource != null)
         {
-            audioSource.PlayOneShot(StartSE);
+            audioSource.Play();
         }
 
-        yield return new WaitForSeconds(3f); // 3秒待機
+        Debug.Log("再生開始");
 
-        // 各PositionUpdaterに再生開始命令
+        // 記録開始（recorder が null のときは何もしない）
+        recorder?.StartRecording();
+
         foreach (var updater in positionUpdaters)
         {
-            if (updater != null)
-            {
-                updater.StartPlayback();
-            }
+            updater.StartPlayback();
         }
     }
+
+    void OnAllFinished()
+    {
+        Debug.Log("全体の再生が完了しました（1体の終了をトリガーとする）");
+
+        // 記録停止・保存
+        recorder?.StopAndSave();
+    }
 }
+

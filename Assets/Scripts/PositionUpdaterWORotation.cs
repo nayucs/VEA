@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class PositionUpdaterWORotation : MonoBehaviour
     private List<Vector3> positions = new List<Vector3>();
     private int currentFrame = 0;
     private bool isPlaying = false;
+
+    // 再生終了時に呼ばれるイベント（EventManagerが購読する）
+    public event Action OnPlaybackFinished;
 
     void Start()
     {
@@ -60,7 +64,18 @@ public class PositionUpdaterWORotation : MonoBehaviour
         {
             transform.position = positions[currentFrame];
             currentFrame++;
-            yield return new WaitForSeconds(0.033f); // 30fps
+            yield return new WaitForSeconds(0.033f);
         }
+
+        // 最後の位置を保持
+        if (positions.Count > 0)
+        {
+            transform.position = positions[positions.Count - 1];
+        }
+
+        isPlaying = false;
+
+        // 再生終了イベント発火
+        OnPlaybackFinished?.Invoke();
     }
 }
