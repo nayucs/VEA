@@ -737,8 +737,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7, y: 8, z: 22}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1923,7 +1923,7 @@ MonoBehaviour:
   requestScenePermissionOnStartup: 0
   requestRecordAudioPermissionOnStartup: 0
   _localDimming: 1
-  _trackingOriginType: 0
+  _trackingOriginType: 1
   usePositionTracking: 1
   useRotationTracking: 1
   useIPDInPositionTracking: 1
@@ -2264,8 +2264,8 @@ MonoBehaviour:
   gazeBlurMaterial: {fileID: 2100000, guid: a368e43a06004aa42a40be314a9a6c5c, type: 2}
   player: {fileID: 1949339666}
   maxSpeed: 7.08
-  clearRadiusRange: {x: 0.2, y: 0.172}
-  blurSizeRange: {x: 10, y: 60}
+  clearRadiusRange: {x: 0.05, y: 0.172}
+  blurSizeRange: {x: 60, y: 100}
 --- !u!4 &1364119166
 Transform:
   m_ObjectHideFlags: 0
@@ -2394,7 +2394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d995e5041d30e469d5f6f0a20e3ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  sound1: {fileID: 0}
 --- !u!4 &1471469190
 Transform:
   m_ObjectHideFlags: 0

@@ -4,12 +4,14 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     private PositionUpdaterWORotation[] positionUpdaters;
-    public AudioSource audioSource;
+    AudioSource audioSource;
+    public AudioClip sound1;
 
     private HeadRotationRecorder recorder;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(DelayedInit());
     }
 
@@ -35,12 +37,14 @@ public class EventManager : MonoBehaviour
 
     IEnumerator DelayedPlayback()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(7f);
 
         if (audioSource != null)
         {
-            audioSource.Play();
+            audioSource.PlayOneShot(sound1);
         }
+
+        yield return new WaitForSeconds(3f);
 
         Debug.Log("çƒê∂äJén");
 

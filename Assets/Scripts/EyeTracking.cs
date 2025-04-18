@@ -58,6 +58,7 @@ public class EyeTracking : MonoBehaviour
                     {
                         Vector2 uv = LocalToUV(rectTransform, localPoint);
                         //Debug.Log($"Hit UVç¿ïW: {uv}");
+                        //Debug.Log("WorldToScreenPoint Y: " + HMDCamera.WorldToScreenPoint(hit.point).y);
 
                         Material mat = rawImage.material;
                         if (mat != null)

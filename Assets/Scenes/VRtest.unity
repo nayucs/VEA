@@ -1099,7 +1099,7 @@ MonoBehaviour:
   requestScenePermissionOnStartup: 0
   requestRecordAudioPermissionOnStartup: 0
   _localDimming: 1
-  _trackingOriginType: 0
+  _trackingOriginType: 1
   usePositionTracking: 1
   useRotationTracking: 1
   useIPDInPositionTracking: 1
@@ -1277,7 +1277,7 @@ MonoBehaviour:
   player: {fileID: 1949339666}
   maxSpeed: 7.08
   clearRadiusRange: {x: 0.07, y: 0.0602}
-  blurSizeRange: {x: 0, y: 30}
+  blurSizeRange: {x: 30, y: 30}
 --- !u!4 &1364119166
 Transform:
   m_ObjectHideFlags: 0
