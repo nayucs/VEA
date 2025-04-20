@@ -2265,7 +2265,7 @@ MonoBehaviour:
   player: {fileID: 1949339666}
   maxSpeed: 7.08
   clearRadiusRange: {x: 0.07, y: 0.0602}
-  blurSizeRange: {x: 5, y: 15}
+  blurSizeRange: {x: 5, y: 10}
 --- !u!4 &1364119166
 Transform:
   m_ObjectHideFlags: 0
@@ -3278,10 +3278,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96621eb8eefb6934dad272551837fb97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
+  maxSpeed: 7.08
   acceleration: 10
   deceleration: 10000
-  rotationSpeed: 180
+  rotationSpeed: 90
   inputThreshold: 0.1
 --- !u!114 &1949339668
 MonoBehaviour:
