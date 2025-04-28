@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    private PositionUpdaterWORotation[] positionUpdaters;
-    AudioSource audioSource;
+    private PositionUpdater[] positionUpdatersWithRotation;
+    private PositionUpdaterWORotation[] positionUpdatersWithoutRotation;
+    private PlayerPositionUpdater[] playerPositionUpdaters;
+
+    private AudioSource audioSource;
     public AudioClip sound1;
 
     private HeadRotationRecorder recorder;
@@ -19,7 +22,9 @@ public class EventManager : MonoBehaviour
     {
         yield return null; // 他オブジェクトのStart実行を待つ
 
-        positionUpdaters = FindObjectsOfType<PositionUpdaterWORotation>();
+        positionUpdatersWithRotation = FindObjectsOfType<PositionUpdater>();
+        positionUpdatersWithoutRotation = FindObjectsOfType<PositionUpdaterWORotation>();
+        playerPositionUpdaters = FindObjectsOfType<PlayerPositionUpdater>();
         recorder = FindObjectOfType<HeadRotationRecorder>();
 
         if (recorder == null)
@@ -27,9 +32,18 @@ public class EventManager : MonoBehaviour
             Debug.LogWarning("HeadRotationRecorder が見つかりません。回転の記録は行われません。");
         }
 
-        if (positionUpdaters.Length > 0)
+        // どれか一体だけに終了イベントを登録
+        if (positionUpdatersWithRotation.Length > 0)
         {
-            positionUpdaters[0].OnPlaybackFinished += OnAllFinished;
+            positionUpdatersWithRotation[0].OnPlaybackFinished += OnAllFinished;
+        }
+        else if (positionUpdatersWithoutRotation.Length > 0)
+        {
+            positionUpdatersWithoutRotation[0].OnPlaybackFinished += OnAllFinished;
+        }
+        else if (playerPositionUpdaters.Length > 0)
+        {
+            playerPositionUpdaters[0].OnPlaybackFinished += OnAllFinished;
         }
 
         StartCoroutine(DelayedPlayback());
@@ -51,7 +65,18 @@ public class EventManager : MonoBehaviour
         // 記録開始（recorder が null のときは何もしない）
         recorder?.StartRecording();
 
-        foreach (var updater in positionUpdaters)
+        // それぞれの再生を開始
+        foreach (var updater in positionUpdatersWithRotation)
+        {
+            updater.StartPlayback();
+        }
+
+        foreach (var updater in positionUpdatersWithoutRotation)
+        {
+            updater.StartPlayback();
+        }
+
+        foreach (var updater in playerPositionUpdaters)
         {
             updater.StartPlayback();
         }
@@ -65,4 +90,3 @@ public class EventManager : MonoBehaviour
         recorder?.StopAndSave();
     }
 }
-
