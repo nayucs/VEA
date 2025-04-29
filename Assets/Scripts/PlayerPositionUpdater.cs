@@ -94,7 +94,7 @@ public class PlayerPositionUpdater : MonoBehaviour
             smoothedSpeed /= speedBuffer.Count;
 
             // DebugLog（スムーズな速度）
-            Debug.Log($"[PlayerPositionUpdater] 現在のスムーズ速度: {smoothedSpeed:F2} m/s");
+            //Debug.Log($"[PlayerPositionUpdater] 現在のスムーズ速度: {smoothedSpeed:F2} m/s");
 
             // GazeBlurControllerに渡すのはスムーズ速度
             if (gazeBlurController != null)
