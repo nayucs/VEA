@@ -1099,7 +1099,7 @@ MonoBehaviour:
   requestScenePermissionOnStartup: 0
   requestRecordAudioPermissionOnStartup: 0
   _localDimming: 1
-  _trackingOriginType: 0
+  _trackingOriginType: 1
   usePositionTracking: 1
   useRotationTracking: 1
   useIPDInPositionTracking: 1
@@ -1275,9 +1275,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gazeBlurMaterial: {fileID: 2100000, guid: a368e43a06004aa42a40be314a9a6c5c, type: 2}
   player: {fileID: 1949339666}
-  maxSpeed: 10
-  clearRadiusRange: {x: 0.2, y: 0.05}
-  blurSizeRange: {x: 0, y: 30}
+  maxSpeed: 7.08
+  clearRadiusRange: {x: 0.07, y: 0.0602}
+  blurSizeRange: {x: 30, y: 30}
 --- !u!4 &1364119166
 Transform:
   m_ObjectHideFlags: 0
@@ -1691,7 +1691,7 @@ Transform:
   m_GameObject: {fileID: 1949339663}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 68.3, y: 0, z: -72.4}
+  m_LocalPosition: {x: 68.3, y: 1, z: -72.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1720,7 +1720,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -1738,9 +1738,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  accelerationTime: 2.5
-  inputThreshold: 0.1
+  acceleration: 10
+  deceleration: 15
   rotationSpeed: 180
+  inputThreshold: 0.1
 --- !u!1 &1950248801
 GameObject:
   m_ObjectHideFlags: 0

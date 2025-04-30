@@ -20,6 +20,6 @@ public class SceneTransition : MonoBehaviour
 
     void ChangeScene()
     {
-        SceneManager.LoadScene("0270-0300");
+        SceneManager.LoadScene("1170-1200");
     }
 }

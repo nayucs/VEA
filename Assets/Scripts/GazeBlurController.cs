@@ -4,9 +4,9 @@ public class GazeBlurController : MonoBehaviour
 {
     public Material gazeBlurMaterial;
     public Rigidbody player; // ˆÚ“®‚·‚éƒvƒŒƒCƒ„[‚ÌRigidbody
-    public float maxSpeed = 10f;
-    public Vector2 clearRadiusRange = new Vector2(0.2f, 0.05f);
-    public Vector2 blurSizeRange = new Vector2(10f, 60f);
+    public float maxSpeed = 7.08f;
+    public Vector2 clearRadiusRange = new Vector2(0.2f, 0.172f);
+    public Vector2 blurSizeRange = new Vector2(5f, 30f);
 
     void Update()
     {

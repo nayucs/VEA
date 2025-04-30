@@ -9,41 +9,33 @@ public class EyeTracking : MonoBehaviour
     public GameObject GazePoint;
     private Camera HMDCamera;
 
-    // スタート時に呼ばれる
+    private Vector2 currentGazeUV = Vector2.zero; // 視線位置の保存
+    public Vector2 CurrentGazeUV => currentGazeUV; // 外部参照用プロパティ
+
     void Start()
     {
         eyeGaze = GetComponent<OVREyeGaze>();
         HMDCamera = Camera.main;
     }
 
-    // フレーム更新毎に呼ばれる
     void Update()
     {
         if (eyeGaze == null) return;
 
-        //HMDの方向と位置を取得
         Vector3 HMDPosition = HMDCamera.transform.position;
         Quaternion HMDRotation = HMDCamera.transform.rotation;
 
         if (eyeGaze.EyeTrackingEnabled)
         {
-            //視線の方向ベクトルを取得
             Vector3 GazeDirection = eyeGaze.transform.forward;
-
-            //HMDの方向ベクトルと視線の方向ベクトルの和をとる
             Vector3 NewDirection = HMDCamera.transform.forward + GazeDirection;
-
-            //視線の先にRayを飛ばす
             Ray ray = new Ray(HMDPosition, GazeDirection);
-
-            //RayがHitしたオブジェクトの情報を格納用
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, 1000f, LayerMask.GetMask("UI")))
             {
                 GazePoint.transform.position = hit.point;
 
-                // UIのRawImageかチェック
                 RawImage rawImage = hit.collider.GetComponent<RawImage>();
                 RectTransform rectTransform = hit.collider.GetComponent<RectTransform>();
 
@@ -57,7 +49,7 @@ public class EyeTracking : MonoBehaviour
                         out localPoint))
                     {
                         Vector2 uv = LocalToUV(rectTransform, localPoint);
-                        //Debug.Log($"Hit UV座標: {uv}");
+                        currentGazeUV = uv; // ここで更新
 
                         Material mat = rawImage.material;
                         if (mat != null)
