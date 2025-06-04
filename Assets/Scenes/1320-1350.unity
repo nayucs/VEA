@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 3c8cdb73514159c4487c1d086edbc5c5, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -905,7 +905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0716ca4acb0d341815614628c5029c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participantID: handa
+  participantID: taisei
 --- !u!4 &553648765
 Transform:
   m_ObjectHideFlags: 0
@@ -3333,7 +3333,7 @@ Transform:
   m_GameObject: {fileID: 1949339663}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.2588191, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 41.99049, y: 1.8, z: -35.56258}
+  m_LocalPosition: {x: 41.99049, y: 1.7, z: -35.56258}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
