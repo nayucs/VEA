@@ -5,21 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
+    [Tooltip("遷移先のシーン名")]
+    public string nextSceneName = "1170-1200";  // デフォルト値を入れてもOK
 
-    // Use this for initialization
-    void Start()
-    {
-        Invoke("ChangeScene", 1.5f);
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        if (OVRInput.GetDown(OVRInput.RawButton.A) || Input.GetKeyDown(KeyCode.Return))
+        {
+            Invoke("ChangeScene", 1.5f);
+        }
 
     }
 
     void ChangeScene()
     {
-        SceneManager.LoadScene("1170-1200");
+        if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("次のシーン名が設定されていません。");
+        }
     }
 }
