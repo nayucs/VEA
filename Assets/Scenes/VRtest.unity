@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 7b716ea496ac29b45b8a2245768a1843, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -609,63 +609,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1001 &406398615
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 100002, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
-      propertyPath: m_Name
-      value: ASP_t-pose
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 61.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -39.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
 --- !u!1001 &416318807
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1617,6 +1560,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
+--- !u!1 &1068868027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1068868029}
+  - component: {fileID: 1068868028}
+  m_Layer: 0
+  m_Name: GazeBlurControllerExternalSpeed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1068868028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068868027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f69bffff93a3941bff2dda366e0ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gazeBlurMaterial: {fileID: 2100000, guid: a368e43a06004aa42a40be314a9a6c5c, type: 2}
+  maxSpeed: 14
+  clearRadiusRange: {x: 0.1, y: 0.07}
+  blurSizeRange: {x: 5, y: 20}
+--- !u!4 &1068868029
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068868027}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.6781616, y: 0.63332635, z: -71.40563}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1071162953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1900,7 +1891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78623dfa491ab2f4b83dbed9abec4eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gazeBlurMaterial: {fileID: 2100000, guid: a368e43a06004aa42a40be314a9a6c5c, type: 2}
+  gazeBlurMaterial: {fileID: 2100000, guid: 7b716ea496ac29b45b8a2245768a1843, type: 2}
   player: {fileID: 1949339666}
   maxSpeed: 7.08
   clearRadiusRange: {x: 0.07, y: 0.0602}
@@ -2343,7 +2334,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.2
   far clip plane: 1000
   field of view: 90
   orthographic: 0
@@ -2531,6 +2522,7 @@ GameObject:
   - component: {fileID: 1949339666}
   - component: {fileID: 1949339667}
   - component: {fileID: 1949339668}
+  - component: {fileID: 1949339669}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2547,7 +2539,7 @@ Transform:
   m_GameObject: {fileID: 1949339663}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 68.3, y: 1.67, z: -72.4}
+  m_LocalPosition: {x: 68.3, y: 1.67, z: -72.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2588,7 +2580,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949339663}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96621eb8eefb6934dad272551837fb97, type: 3}
   m_Name: 
@@ -2605,13 +2597,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949339663}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb506e20a40f8944596b0d3d118c7f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   centerEyeAnchor: {fileID: 1860489296}
   movementScale: 5
+--- !u!114 &1949339669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949339663}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d1f65c2a92e9c42a0db987b62ff1c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blurController: {fileID: 1068868028}
+  smoothingFactor: 0.1
 --- !u!1 &1950248801
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,7 +2727,7 @@ SceneRoots:
   - {fileID: 1950248804}
   - {fileID: 456567586}
   - {fileID: 1364119166}
-  - {fileID: 406398615}
+  - {fileID: 1068868029}
   - {fileID: 190235108}
   - {fileID: 1282571590}
   - {fileID: 1528139863}
