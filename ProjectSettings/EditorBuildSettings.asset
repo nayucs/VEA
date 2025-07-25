@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/0270-0300.unity
     guid: 1c392d0c080763d49b11fa513a07716b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/VRtest.unity
     guid: 96baa06e8fdb6bf49a75b4752ef8d45f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/1170-1200.unity
     guid: 94170fd30e7b7e646a190d099b3baa9c
   m_configObjects:

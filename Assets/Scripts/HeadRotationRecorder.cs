@@ -9,15 +9,19 @@ public class HeadRotationRecorder : MonoBehaviour
     private bool isRecording = false;
     private Transform headTransform;
     private float startTime;
-    private EyeTracking eyeTracking; // EyeTracking の参照
+    private EyeTracking eyeTracking;
+
+    private Camera HMDCamera;
+    public GameObject targetObject;
 
     [Header("被験者ID（例：P001）")]
-    public string participantID = "P001";  // Inspector で指定可能に
+    public string participantID = "P001";
 
     void Start()
     {
         headTransform = GameObject.Find("CenterEyeAnchor")?.transform;
         eyeTracking = GameObject.FindObjectOfType<EyeTracking>();
+        HMDCamera = Camera.main;
 
         if (headTransform == null)
         {
@@ -27,6 +31,11 @@ public class HeadRotationRecorder : MonoBehaviour
         if (eyeTracking == null)
         {
             Debug.LogError("EyeTracking スクリプトが見つかりません。");
+        }
+
+        if (HMDCamera == null)
+        {
+            Debug.LogError("Main Camera が見つかりません。");
         }
     }
 
@@ -38,7 +47,10 @@ public class HeadRotationRecorder : MonoBehaviour
         Vector3 eulerAngles = headTransform.rotation.eulerAngles;
         Vector2 gazeUV = eyeTracking != null ? eyeTracking.CurrentGazeUV : Vector2.zero;
 
-        logLines.Add($"{elapsedTime:F3},{eulerAngles.x:F2},{eulerAngles.y:F2},{eulerAngles.z:F2},{gazeUV.x:F3},{gazeUV.y:F3}");
+        // オブジェクトの視野内判定（列名を ball_in_view に）
+        string ballInView = (targetObject != null && IsObjectVisible(HMDCamera, targetObject)) ? "1" : "0";
+
+        logLines.Add($"{elapsedTime:F3},{eulerAngles.x:F2},{eulerAngles.y:F2},{eulerAngles.z:F2},{gazeUV.x:F3},{gazeUV.y:F3},{ballInView}");
     }
 
     public void StartRecording()
@@ -48,8 +60,7 @@ public class HeadRotationRecorder : MonoBehaviour
         logLines.Clear();
         startTime = Time.time;
 
-        // ヘッダーを追加（任意）
-        logLines.Add("time,x,y,z,gaze_u,gaze_v");
+        logLines.Add("time,x,y,z,gaze_u,gaze_v,ball_in_view");
 
         isRecording = true;
         Debug.Log($"被験者 {participantID} の記録を開始しました。");
@@ -73,5 +84,12 @@ public class HeadRotationRecorder : MonoBehaviour
         {
             Debug.LogError("記録保存に失敗: " + e.Message);
         }
+    }
+
+    bool IsObjectVisible(Camera cam, GameObject obj)
+    {
+        if (obj == null || cam == null) return false;
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cam);
+        return GeometryUtility.TestPlanesAABB(planes, obj.GetComponent<Renderer>().bounds);
     }
 }
