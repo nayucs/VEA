@@ -11,12 +11,21 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/0270-0300.unity
     guid: 1c392d0c080763d49b11fa513a07716b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/VRtest.unity
     guid: 96baa06e8fdb6bf49a75b4752ef8d45f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/1170-1200.unity
     guid: 94170fd30e7b7e646a190d099b3baa9c
+  - enabled: 1
+    path: Assets/Scenes/1170-1200Post.unity
+    guid: 8df3ab3540fc3d442a0a609afeba010d
+  - enabled: 1
+    path: Assets/Scenes/1170-1200Post2.unity
+    guid: 4079e39c9a198334e9d3d09c45224854
+  - enabled: 1
+    path: Assets/Scenes/1170-1200Post3.unity
+    guid: 8d04534592342544dac6a0fe6c1a7b28
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 7dabd8365390ff8408b3d99f0ab874cc, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b8f0421b053e65642890482fba0c66d4, type: 2}

@@ -62,9 +62,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _AspectRatio: 1.77778
-    - _BlurSize: 15
+    - _BlurSize: 8.773761
     - _BumpScale: 1
-    - _ClearRadius: 0.07
+    - _ClearRadius: 0.09245248
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -84,5 +84,5 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GazeUV: {r: 0.4837911, g: 0.5084675, b: 0, a: 0}
+    - _GazeUV: {r: 0.52698815, g: 0.50946105, b: 0, a: 0}
   m_BuildTextureStacks: []
