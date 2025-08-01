@@ -7,7 +7,7 @@ public class EventManager : MonoBehaviour
     private static EventManager instance;
 
     [Header("再生完了後に遷移するシーン名")]
-    public string nextSceneName = "PostExperimentScene";  // ← Inspector で指定可能
+    public string nextSceneName = "PostExperimentScene";
 
     private PositionUpdater[] positionUpdatersWithRotation;
     private PositionUpdaterWORotation[] positionUpdatersWithoutRotation;
@@ -17,7 +17,6 @@ public class EventManager : MonoBehaviour
     public AudioClip sound1;
 
     private HeadRotationRecorder recorder;
-    private bool waitingToSave = false;
 
     void Awake()
     {
@@ -34,8 +33,6 @@ public class EventManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         StartCoroutine(DelayedInit());
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     IEnumerator DelayedInit()
@@ -79,34 +76,21 @@ public class EventManager : MonoBehaviour
 
     void OnAllFinished()
     {
-        Debug.Log("再生が完了しました。記録を停止し、次のシーンに遷移します。");
+        Debug.Log("再生が完了しました。記録を停止 → 保存 → シーン遷移します。");
 
-        recorder?.StopRecording();
-        waitingToSave = true;
+        if (recorder != null)
+        {
+            recorder.StopRecording();
+            recorder.SaveRecording(); // 保存をここで実行
+        }
 
         if (!string.IsNullOrEmpty(nextSceneName))
         {
-            SceneManager.LoadScene(nextSceneName);
+            SceneManager.LoadScene(nextSceneName); // 保存後にシーン遷移
         }
         else
         {
-            Debug.LogError("遷移先シーン名が設定されていません。");
+            Debug.LogError("遷移先シーン名が未設定です。");
         }
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (waitingToSave)
-        {
-            Debug.Log($"シーン {scene.name} で記録を保存します。");
-            recorder = FindObjectOfType<HeadRotationRecorder>();
-            recorder?.SaveRecording();
-            waitingToSave = false;
-        }
-    }
-
-    void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
