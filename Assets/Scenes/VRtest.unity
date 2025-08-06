@@ -2603,7 +2603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerEyeAnchor: {fileID: 1860489296}
-  movementScale: 5
+  movementScale: 5.5
 --- !u!114 &1949339669
 MonoBehaviour:
   m_ObjectHideFlags: 0
