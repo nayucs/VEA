@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: a368e43a06004aa42a40be314a9a6c5c, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -892,7 +892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &553648764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,7 +905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0716ca4acb0d341815614628c5029c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participantID: test
+  participantID: onozato2
   targetObject: {fileID: 792875065}
 --- !u!4 &553648765
 Transform:
@@ -2496,7 +2496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d995e5041d30e469d5f6f0a20e3ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: 1320-1350Post
+  nextSceneName: none
   sound1: {fileID: 8300000, guid: c2a82c7072d35dd40ad5d1d868d55a2e, type: 3}
 --- !u!4 &1471469190
 Transform:
