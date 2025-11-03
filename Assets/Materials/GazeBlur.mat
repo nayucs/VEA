@@ -84,5 +84,5 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GazeUV: {r: 0.45224652, g: 0.51701826, b: 0, a: 0}
+    - _GazeUV: {r: 0.41056293, g: 0.48008206, b: 0, a: 0}
   m_BuildTextureStacks: []

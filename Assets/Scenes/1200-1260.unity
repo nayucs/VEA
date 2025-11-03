@@ -218,6 +218,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: T0P6
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 42b6b63afdd47c54aaf75115e4e1d841, type: 3}
       propertyPath: m_LocalPosition.x
       value: 65
@@ -3382,7 +3386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1949339665
 Transform:
   m_ObjectHideFlags: 0
@@ -3455,7 +3459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7970e5de4bef714aa13e4cfa28b73f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  csvFile: {fileID: 4900000, guid: e13d436b589f3a443b3346d9dfd4f2cb, type: 3}
+  csvFile: {fileID: 4900000, guid: 64643ffe2ca866a4284f9697d74cff63, type: 3}
   smoothingFrameCount: 5
   gazeBlurController: {fileID: 352576061}
 --- !u!114 &1949339669
