@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: a368e43a06004aa42a40be314a9a6c5c, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -608,8 +608,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gazeBlurMaterial: {fileID: 2100000, guid: a368e43a06004aa42a40be314a9a6c5c, type: 2}
   maxSpeed: 14
-  clearRadiusRange: {x: 0.1, y: 0.03}
-  blurSizeRange: {x: 5, y: 20}
+  clearRadiusRange: {x: 0.243, y: 0.213}
+  blurSizeRange: {x: 30, y: 50}
 --- !u!4 &352576062
 Transform:
   m_ObjectHideFlags: 0
@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0716ca4acb0d341815614628c5029c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participantID: BulgariaDemo
+  participantID: onozato1
   targetObject: {fileID: 792875065}
 --- !u!4 &638312883
 Transform:
@@ -2488,7 +2488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d995e5041d30e469d5f6f0a20e3ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: 1170-1200Post
+  nextSceneName: none
   sound1: {fileID: 8300000, guid: c2a82c7072d35dd40ad5d1d868d55a2e, type: 3}
 --- !u!4 &1471469190
 Transform:
@@ -3080,7 +3080,7 @@ Camera:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
