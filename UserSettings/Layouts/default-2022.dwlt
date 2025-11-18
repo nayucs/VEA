@@ -95,8 +95,8 @@ MonoBehaviour:
     y: 0
     width: 779.33325
     height: 942
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -147,8 +147,8 @@ MonoBehaviour:
     y: 942
     width: 1870.6666
     height: 357.33337
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 86
+  controlID: 182
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -349,8 +349,8 @@ MonoBehaviour:
     y: 0
     width: 1091.3334
     height: 942
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -498,9 +498,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ccb00000
-      m_LastClickedID: 45260
-      m_ExpandedIDs: 4e63ffff8882ffffb0a1ffffdebeffff84dcffff28fbffff60730000de73000034740000387400004c740000448b0000c28b0000188c00001c8c000056920000d49200002a9300002e93000042930000d6b0000054b10000aab10000aeb10000c2b10000
+      m_SelectedIDs: a0ad0000
+      m_LastClickedID: 44448
+      m_ExpandedIDs: d29effff30bfffff08deffff28fbffffe48b0000628c0000b88c0000bc8c0000d08c0000aaad000028ae00007eae000082ae000096ae0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -616,7 +616,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Materials
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -624,16 +624,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Materials
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\_s2420729\Documents\GitHub\VEA
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 14790000
-    m_LastClickedID: 30996
-    m_ExpandedIDs: 000000005e78000000ca9a3b
+    m_SelectedIDs: 90780000
+    m_LastClickedID: 30864
+    m_ExpandedIDs: 00000000ea77000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -661,7 +661,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005e780000
+    m_ExpandedIDs: 00000000ea770000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -815,6 +815,7 @@ MonoBehaviour:
   m_LowResolutionForAspectRatios: 01000001000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
+  m_showToolbar: 1
 --- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -854,7 +855,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 1
       snapOffset: {x: -169.33337, y: -26.666687}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: -7.999939, y: 0}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -1212,7 +1213,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 22.95305
     speed: 2
-    m_Value: 24.034609
+    m_Value: 22.95305
   m_Ortho:
     m_Target: 0
     speed: 2
